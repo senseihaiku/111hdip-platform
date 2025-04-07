@@ -1,0 +1,27 @@
+name: Enable GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/enable-pages.yml'
+
+jobs:
+  enable-pages:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          static_site_generator: next
+          
+      - name: Display GitHub Pages URL
+        run: echo "GitHub Pages should be available at https://senseihaiku.github.io/111hdip-platform/ once the deployment is complete."
